@@ -44,8 +44,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-slider-thumbnails__arrow product-slider-thumbnails__arrow--next"></div>
-                        <div class="product-slider-thumbnails__arrow product-slider-thumbnails__arrow--prev"></div>
+                        <div class="product-slider-thumbnails__arrow product-slider-thumbnails__arrow--next">
+                            <svg class="icon">
+                                <use href="/img/sprite.svg#angle-down"></use>
+                            </svg>
+                        </div>
+                        <div class="product-slider-thumbnails__arrow product-slider-thumbnails__arrow--prev">
+                            <svg class="icon">
+                                <use href="/img/sprite.svg#angle-up"></use>
+                            </svg>
+                        </div>
                     </div>
 
 
@@ -74,7 +82,40 @@
                     </div>
 
                 </div>
-                <div class="product__main-info"></div>
+                <div class="product__main-info">
+                    <ul class="product-m-info">
+                        <li class="product-m-info__item">Код товара: IC-73131</li>
+                        <li class="product-m-info__item">Ценовой диапазон: Премиум</li>
+                    </ul>
+                    <div class="to-order">
+                        <div class="to-order__label">Под заказ</div>
+                        <div class="to-order__term">
+                            <svg class="icon">
+                                <use href="/img/sprite.svg#clock"></use>
+                            </svg>
+                            <span>Срок производства: 70 дней</span>
+                        </div>
+                    </div>
+                    <div class="product__price">1 392 869 <span class="ru">₽</span> / 15 957 €</div>
+                    <div class="product__btn-group">
+                        <a href="" class="btn btn--dark font-700">
+                            добавить В корзину
+                            <svg class="icon icon--basket">
+                                <use href="/img/sprite.svg#basket"></use>
+                            </svg>
+                        </a>
+
+                        <a href="" class="btn btn--outline btn--outline-dark font-700">состав по предметам</a>
+                    </div>
+                    <ul class="product-info">
+                        <li class="product-info__item">Фабрика — <a href="">CIRCU</a></li>
+                        <li class="product-info__item">Предмет — Кресло</li>
+                        <li class="product-info__item">Страна производства — Португалия</li>
+                        <li class="product-info__item">Ценовой сегмент — Средне-высокий</li>
+                        <li class="product-info__item">Стиль — <a href="">Современный</a></li>
+                        <li class="product-info__item">Отделка — Лак матовый или глянцевый</li>
+                    </ul>
+                </div>
             </div>
 
         </div>
@@ -126,54 +167,37 @@
             };
             Inputmask(maskOptions).mask(phoneInput);
 
+            // Initialize Swiper for the thumbnails
+            const thumbsSlider = new Swiper('.product-slider-thumbnails', {
+                watchSlidesProgress: true,
+                direction: 'vertical',
+                slidesPerView: 4,
+                spaceBetween: 12,
+                loop: true,
+                navigation: {
+                    nextEl: '.product-slider-thumbnails__arrow--next',
+                    prevEl: '.product-slider-thumbnails__arrow--prev',
+                },
+                breakpoints: {
+                    1024: {
+                        spaceBetween: 15
+                    }
+                }
+            });
+
             // Initialize Swiper for the main slider
             const mainSlider = new Swiper('.product-slider', {
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
                 },
+                loop: true,
                 thumbs: {
-                    swiper: null,
+                    swiper: thumbsSlider,
                 },
             });
 
-            // Initialize Swiper for the thumbnails
-            const thumbsSlider = new Swiper('.product-slider-thumbnails', {
-                direction: 'vertical',
-                slidesPerView: 4,
-                spaceBetween: 12,
-                navigation: {
-                    nextEl: '.product-slider-thumbnails__arrow--next',
-                    prevEl: '.product-slider-thumbnails__arrow--prev',
-                },
-                on: {
-                    init: function () {
-                        if (window.innerWidth >= 768) {
-                            mainSlider.thumbs.swiper = this;
-                            mainSlider.thumbs.init();
-                            mainSlider.pagination.destroy();
-                        }
-                    },
-                    resize: function () {
-                        if (window.innerWidth >= 768 && !mainSlider.thumbs.swiper) {
-                            mainSlider.thumbs.swiper = this;
-                            mainSlider.thumbs.init();
-                            mainSlider.pagination.destroy();
-                        } else if (window.innerWidth < 768 && mainSlider.thumbs.swiper) {
-                            mainSlider.thumbs.swiper = null;
-                            mainSlider.thumbs.init();
-                            mainSlider.pagination.init();
-                        }
-                    },
-                }
-            });
 
-            // Initial check
-            if (window.innerWidth >= 768) {
-                mainSlider.pagination.destroy();
-            } else {
-                mainSlider.pagination.init();
-            }
         });
     </script>
 {% endblock %}
