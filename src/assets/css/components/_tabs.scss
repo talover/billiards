@@ -1,0 +1,24 @@
+.tab {
+    display: none;
+
+    &--active {
+        display: block;
+    }
+}
+
+.tabs-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    &__btn {
+        text-decoration: none;
+
+        &--active {
+            text-decoration: underline;
+        }
+    }
+}

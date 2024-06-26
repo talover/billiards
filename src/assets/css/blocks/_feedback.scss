@@ -1,0 +1,139 @@
+.feedback {
+  padding: 30px 20px;
+  background: url("#{$rootUrl}feedback-sm.webp") no-repeat center;
+  background-size: cover;
+
+  &__inner {
+    box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.12);
+    background: #fff;
+    padding: 30px 25px;
+    max-width: 320px;
+    margin: auto;
+  }
+
+  &__title {
+    margin: 0 0 17px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #222;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__content {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+
+    .form-row {
+      margin-bottom: 0;
+    }
+  }
+
+  &__footer {
+    margin-top: 30px;
+  }
+
+  &__agreement {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 12px;
+  }
+
+  &__agreement-text {
+    flex: 1;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.41667;
+    color: #222;
+
+    a {
+      color: #b18341;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__submit {
+    margin-top: 20px;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  .feedback {
+    background-image: url("#{$rootUrl}feedback-md.webp");
+
+    &__inner {
+      padding: 30px 45px;
+    }
+  }
+}
+
+@media(min-width: 1024px) {
+  .feedback {
+    background-image: url("#{$rootUrl}feedback-lg.webp");
+    padding: 110px 0 118px;
+
+    &__inner {
+      padding: 60px 90px;
+      max-width: 816px;
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 0.92857;
+      text-align: center;
+      color: #222;
+      margin-bottom: 28px;
+
+      span {
+        display: inline;
+      }
+
+      &:after {
+        display: block;
+        content: "";
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(to right,  #f7c791 0%,#eab56f 47%,#e3aa56 100%);
+        margin: 20px auto 0;
+      }
+    }
+
+    &__content {
+      gap: 25px 20px;
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    &__content-bottom {
+      grid-column: span 2 / span 2;
+    }
+
+    &__footer {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &__agreement-text {
+      font-size: 13px;
+      line-height: 1.46154;
+      padding-top: 3px;
+    }
+
+    &__submit {
+      margin: 0 0 0 auto;
+    }
+  }
+}

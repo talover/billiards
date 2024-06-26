@@ -1,0 +1,180 @@
+{% extends 'layout.html.twig' %}
+{% block title %}markup rig{% endblock %}
+
+{% block page %}
+    <div class="main-container">
+        <ol class="breadcrumbs">
+            <li class="breadcrumbs__item"><a href="/" class="breadcrumbs__link">Главная</a></li>
+            <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">>Каталог</a></li>
+            <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">>Мебель</a></li>
+            <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">>Кресла</a></li>
+            <li class="breadcrumbs__item">Мягкое кресло SKY ONE фабрики CIRCU</li>
+        </ol>
+        <div class="product">
+            <div class="product__header">
+                <h1 class="product__title">Мягкое кресло SKY ONE фабрики CIRCU</h1>
+                <button class="product__share">
+                    <svg class="icon">
+                        <use href="/img/sprite.svg#share"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="product__hero">
+                <div class="product__slider">
+                    <div class="product-slider-thumbnails-wrap">
+                        <div class="product-slider-thumbnails swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img class="product-slider-thumbnails__img" src="/img/product-slider/product-slider-1.png" alt="" />
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="product-slider-thumbnails__img" src="/img/product-slider/product-slider-2.png" alt="" />
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="product-slider-thumbnails__img" src="/img/product-slider/product-slider-3.png" alt="" />
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="product-slider-thumbnails__img" src="/img/product-slider/product-slider-4.png" alt="" />
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="product-slider-thumbnails__img" src="/img/product-slider/product-slider-2.png" alt="" />
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="product-slider-thumbnails__img" src="/img/product-slider/product-slider-3.png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-slider-thumbnails__arrow product-slider-thumbnails__arrow--next"></div>
+                        <div class="product-slider-thumbnails__arrow product-slider-thumbnails__arrow--prev"></div>
+                    </div>
+
+
+                    <div class="product-slider swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="product-slider__img" src="/img/product-slider/product-slider-1.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="product-slider__img" src="/img/product-slider/product-slider-2.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="product-slider__img" src="/img/product-slider/product-slider-3.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="product-slider__img" src="/img/product-slider/product-slider-4.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="product-slider__img" src="/img/product-slider/product-slider-2.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="product-slider__img" src="/img/product-slider/product-slider-3.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                </div>
+                <div class="product__main-info"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+{% endblock %}
+
+{% block beforeFooter %}
+    {% include 'partials/feedback.html.twig' %}
+    {% include 'partials/brands.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/swiper-bundle.min.js"></script>
+    <script src="/js/inputmask.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper('.brands .brands-slider', {
+                slidesPerView: 'auto',
+                spaceBetween: 40,
+                autoplay: {
+                    delay: 10000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.brands .brands-slider__arrow--next',
+                    prevEl: '.brands .brands-slider__arrow--prev',
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 5,
+                        spaceBetween: 20,
+                    },
+                    1280: {
+                        slidesPerView: 6,
+                        spaceBetween: 20,
+                    }
+                }
+            });
+
+            // phone input mask
+            const phoneInput = document.querySelector('.phone-mask');
+            const maskOptions = {
+                mask: '+7 (999) 999-99-99',
+                placeholder: '_',
+                showMaskOnHover: false,
+                showMaskOnFocus: true
+            };
+            Inputmask(maskOptions).mask(phoneInput);
+
+            // Initialize Swiper for the main slider
+            const mainSlider = new Swiper('.product-slider', {
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                thumbs: {
+                    swiper: null,
+                },
+            });
+
+            // Initialize Swiper for the thumbnails
+            const thumbsSlider = new Swiper('.product-slider-thumbnails', {
+                direction: 'vertical',
+                slidesPerView: 4,
+                spaceBetween: 12,
+                navigation: {
+                    nextEl: '.product-slider-thumbnails__arrow--next',
+                    prevEl: '.product-slider-thumbnails__arrow--prev',
+                },
+                on: {
+                    init: function () {
+                        if (window.innerWidth >= 768) {
+                            mainSlider.thumbs.swiper = this;
+                            mainSlider.thumbs.init();
+                            mainSlider.pagination.destroy();
+                        }
+                    },
+                    resize: function () {
+                        if (window.innerWidth >= 768 && !mainSlider.thumbs.swiper) {
+                            mainSlider.thumbs.swiper = this;
+                            mainSlider.thumbs.init();
+                            mainSlider.pagination.destroy();
+                        } else if (window.innerWidth < 768 && mainSlider.thumbs.swiper) {
+                            mainSlider.thumbs.swiper = null;
+                            mainSlider.thumbs.init();
+                            mainSlider.pagination.init();
+                        }
+                    },
+                }
+            });
+
+            // Initial check
+            if (window.innerWidth >= 768) {
+                mainSlider.pagination.destroy();
+            } else {
+                mainSlider.pagination.init();
+            }
+        });
+    </script>
+{% endblock %}
+

@@ -1,0 +1,46 @@
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  min-width: 320px;
+  margin: auto;
+  font-size: 16px;
+  line-height: 1.4;
+  font-family: $fontGothamPro;
+  background: #fff;
+  color: #000;
+}
+
+#main {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+button,
+input {
+  font-family: $fontGothamPro;
+}
+
+.page-content {
+  width: 100%;
+  flex: 1;
+}

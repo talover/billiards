@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}markup rig{% endblock %}
+{% block body %}
+    <div id="main">
+        {% include 'partials/header.html.twig' %}
+
+        <div class="page-content">
+          {% block page %}
+            
+          {% endblock %}
+        </div>
+        {% block beforeFooter %}{% endblock %}
+        {% include 'partials/footer.html.twig' %}
+    </div>
+{% endblock %}

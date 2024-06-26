@@ -1,0 +1,115 @@
+.btn {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 6px;
+  height: 44px;
+  border: 0;
+  outline: transparent;
+  text-decoration: none;
+  margin: 0;
+  padding: 0 20px;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  transition: 0.3s background-color ease, 0.3s border ease, 0.3s color ease;
+  background: transparent;
+  cursor: pointer;
+
+  &--outline {
+    border: 2px solid ;
+  }
+
+  &--outline-primary {
+    border-color: #b18341;
+    color: #b18341;
+
+    &:hover {
+      background: rgba(#b18341,10%);
+    }
+  }
+
+  &--primary {
+    background: #b18341;
+    color: #fff;
+
+    &:hover {
+      background: lighten(#b18341,10%);
+    }
+  }
+
+  &--dark {
+    background: #181818;
+    color: #fff;
+
+    &:hover {
+      background: lighten(#181818,10%);
+    }
+  }
+
+  &--outline-dark {
+    border-color: #222;
+    color: #222;
+
+    &:hover {
+      background: rgba(#222,10%);
+    }
+  }
+
+  &--secondary {
+    background: #f1f1f1;
+    color: #222;
+
+    &:hover {
+      background: darken(#f1f1f1,5%);
+    }
+  }
+
+  &--outline-secondary {
+    border-color: #f1f1f1;
+    color: #222;
+
+    &:hover {
+      background: #f1f1f1;
+    }
+  }
+
+  &--md {
+    height: 42px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  &--sm {
+    height: 36px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+
+    &.btn--outline {
+      border-width: 1px;
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .btn {
+    height: 52px;
+    padding: 0 30px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+
+    &--md {
+      height: 45px;
+      font-size: 11px;
+      letter-spacing: 0.09em;
+    }
+
+    &--sm {
+      height: 39px;
+      font-size: 11px;
+      letter-spacing: 0.09em;
+    }
+  }
+}
